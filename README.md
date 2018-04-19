@@ -21,4 +21,8 @@ TigerConservationAreasFocus
 
 WildlifeProtectedAreas
 * Obtained from [IUCN List of Protected and Conserved Areas](https://www.protectedplanet.net/country/IN) (aka UN Environment).
-* Unnecessary attributes were removed.
+* Unnecessary attributes were removed.  
+
+# Mock up
+
+![Map of India showing conservation areas](/RoughDraft-ArcPro.PNG "Mock up")

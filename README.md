@@ -1,5 +1,8 @@
 # MAP675-Assignment2
 
+# Summary
+This web map will give a brief overview of conservation areas for the Royal Bengal Tiger in India. You will be able to see all protected & conserved areas, as recorded by [Protected Planet](https://www.protectedplanet.net/), in addition to current areas dedicated to tiger preservation, with high priority areas emphasized.
+
 
 # Data Sources
 StateBorder

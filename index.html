@@ -77,7 +77,9 @@
       maxBounds: [
         [21.7779, 78.8618],
         [21.7579, 78.8718]
-      ]
+      ],
+      zoomControl: true,
+      
     };
     var map = L.map('map', options);
 
@@ -116,25 +118,29 @@
 
     // Layer styles
     var statesOptions = {
-      color: '#d0d3d4',
-      weight: 0.5,
-      fill: 0
+      color: '#3B332C',
+      weight: 0.3,
+      fill: false
     }
 
     var conAreasOptions = {
-      color: '#d4ac0d',
-      weight: 2
+      color: '#F3CF1E',
+      weight: 0.5,
+      fillOpacity: 0.7
     }
 
     var conFocusOptions = {
-      color: '#e74c3c',
-      weight: 2
+      color: '#A14A37',
+      weight: 0.5,
+      fillOpacity: 0.9
     }
 
     var wildlifeOptions = {
-      color: '#00ffff',
-      weight: 2
+      color: '#3B9B82',
+      weight: 0.5,
+      fillOpacity: 0.5
     }
+
   </script>
 </body>
 

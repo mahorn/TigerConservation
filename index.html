@@ -34,7 +34,7 @@
     <div class='absolute top-ml left bottom z1 w-full w360-ml px12 py12-ml'>
       <div class='flex-parent flex-parent--column viewport-third h-auto-ml hmax-full bg-white round-ml shadow-darken10'>
         <div class='px12 py12 scroll-auto'>
-          <h2 class='txt-xl txt-bold mb6'>The End of a Dynasty?</h2>
+          <h2 class='txt-l txt-bold mb6'>The Rani of the Jungle</h2>
           <p>The Royal Bengal Tiger (Panthera tigris tigris) is nearing the end of its reign in Southeast Asia. The species is listed as Endangered on the IUCN Red List and is threatened by poaching, loss and fragmentation of habitat. None of the tiger conservation landscapes within its range is considered large enough to support an effective tiger population of more than 250 adult tigers.</p>
           <br>
           <h2 class='txt-m txt-bold mb6'><svg class='icon'><use xlink:href='#icon-layers'/></svg>Legend</h2>
@@ -78,12 +78,11 @@
         [21.7779, 78.8618],
         [21.7579, 78.8718]
       ],
-      zoomControl: false,
-
+      zoomControl: false
     };
     var map = L.map('map', options);
-    
-    L.control.zoom({ position:'topright'}).addTo(map);
+
+    L.control.zoom({ position:'topright', scrollWheelZoom: true, doubleClickZoom: true,}).addTo(map);
 
     //Basemap
     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
@@ -95,16 +94,19 @@
     //Loading data layers
     $.when(
       $.getJSON('Data/india-states.json'),
+      $.getJSON('Data/wildlife-areas.json'),
       $.getJSON('Data/conservation-areas.json'),
       $.getJSON('Data/conservation-focus.json'),
-      $.getJSON('Data/wildlife-areas.json')
-    ).done(function(indiaStates, conservationAreas, conservationFocus, wildlifeAreas) {
-      drawMap(indiaStates, conservationAreas, conservationFocus, wildlifeAreas);
+    ).done(function(indiaStates, wildlifeAreas, conservationAreas, conservationFocus) {
+      drawMap(indiaStates, wildlifeAreas, conservationAreas, conservationFocus);
     });
 
-    function drawMap(indiaStatesData, conservationAreasData, conservationFocusData, wildlifeAreasData) {
+    function drawMap(indiaStatesData, wildlifeAreasData, conservationAreasData, conservationFocusData) {
       L.geoJson(indiaStatesData, {
         style: statesOptions
+      }).addTo(map);
+      L.geoJson(wildlifeAreasData, {
+        style: wildlifeOptions
       }).addTo(map);
       L.geoJson(conservationAreasData, {
         style: conAreasOptions
@@ -112,10 +114,6 @@
       L.geoJson(conservationFocusData, {
         style: conFocusOptions
       }).addTo(map);
-      L.geoJson(wildlifeAreasData, {
-        style: wildlifeOptions
-      }).addTo(map);
-
     }
 
     // Layer styles
@@ -142,6 +140,9 @@
       weight: 0.5,
       fillOpacity: 0.5
     }
+
+  //Tooltips
+
 
   </script>
 </body>

@@ -19,7 +19,7 @@
       margin: 0;
       padding: 0;
       background: rgba(0, 0, 0, .75);
-      z-index: -1;
+            z-index: -1;
     },
     .tooltip {
     color: white;
@@ -35,30 +35,29 @@
 
 <body>
 
-  <div class='viewport-full relative scroll-hidden'>
-    <div class='bg-darken10 viewport-twothirds viewport-full-ml absolute top left right bottom'></div>
+
     <div class='absolute top-ml left bottom z1 w-full w360-ml px12 py12-ml'>
       <div class='flex-parent flex-parent--column viewport-third h-auto-ml hmax-full bg-white round-ml shadow-darken10'>
         <div class='px12 py12 scroll-auto'>
           <h2 class='txt-l txt-bold mb6 align-center'>The Rani of the Jungle</h2>
-<img src="img/tiger.jpg">
-          <p>The Royal Bengal Tiger   (<a class='link' href='http://www.iucnredlist.org/details/136899/0'>Panthera tigris tigris</a>) is nearing the end of its reign in Southeast Asia. The species is listed as Endangered on the IUCN Red List and is threatened by poaching, loss and fragmentation of habitat. None of the tiger conservation landscapes within its range is considered large enough to support an effective tiger population of more than 250 adult tigers.</p>
+          <img src="img/tiger.jpg">
+          <p>The Royal Bengal Tiger   (<a class='link' href='https://www.iucnredlist.org/details/136899/0'>Panthera tigris tigris</a>) is nearing the end of its reign in Southeast Asia. The species is listed as Endangered on the IUCN Red List and is threatened by poaching, loss and fragmentation of habitat. None of the tiger conservation landscapes within its range is considered large enough to support an effective tiger population of more than 250 adult tigers.</p>
           <br>
           <h2 class='txt-m txt-bold mb6'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-layers'/></svg></div>Legend</h2>
           <ul>
             <li class='color-green'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-polygon'/></svg></div>Protected Wildlife Areas</li>
-            <li class='color-yellow'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-polygon'/></svg></div>Tiger Conservation Areas</li>
-            <li class='color-red'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-polygon'/></svg></div>Tiger Conservation High Priority</li>
+            <li class='color-yellow'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-polygon'/></svg></div>Tiger Conservation Areas्र</li>
+            <li class='color-red'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-polygon'/></svg></div>Tiger Conservation High Priorityा</li>
           </ul>
 
         </div>
         <footer class='px12 py12 bg-gray-faint round-b-ml txt-s'>
           <ul>
-            <li>Data Sources:
-              <a class='link' href='https://www.protectedplanet.net/country/IN'>Protected Planet</a>,   <a class='link' href='http://data.globalforestwatch.org/datasets'>Global Forest Watch</a>.
+            <li>Data:
+              <a class='link' href='https://www.protectedplanet.net/country/IN'>Protected Planet</a>,   <a class='link' href='https://data.globalforestwatch.org/datasets'>Global Forest Watch</a>.
             </li>
             <br>
-            <li>Map authored by
+            <li>Map authored by:
               <p> Marissa Defratti & Maria Renee </p>
             </li>
           </ul>
@@ -66,12 +65,12 @@
       </div>
     </div>
     <div class='absolute bottom right pr120 pb24'>
-      <button class='btn round btn--orange' href="hindi.html">Hindi</button>
+      <a href="pages/marathi.html"><button class='btn round btn--green' >Marathi</button></a>
     </div>
     <div class='absolute bottom right pr12 pb24'>
-      <button class='btn round btn--green' href="marathi.html">Marathi</button>
+      <a href="pages/hindi.html"><button class='btn round btn--orange'>Hindi</button></a>
     </div>
-  </div>
+
 
   <div id="map"></div>
 
@@ -96,30 +95,22 @@
     };
     var map = L.map('map', options);
 
-    L.control.zoom({ position:'topright', scrollWheelZoom: true, doubleClickZoom: true,}).addTo(map);
-
+        L.control.zoom({ position: 'topright'}).addTo(map);
     //Basemap
-    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
       subdomains: 'abcd',
-      maxZoom: 19
+      maxZoom: 19,
+      https: true
     }).addTo(map);
 
-map.createPane('labels');
-map.getPane('labels').style.zIndex = 650;
-map.getPane('labels').style.pointerEvents = 'none';
-
-L.tileLayer('http://global.ssl.fastly.net/rastertiles/dark_only_labels/{z}/{x}/{y}.png', {
-        attribution: '©OpenStreetMap, ©CartoDB',
-        pane: 'labels'
-}).addTo(map);
 
     //Loading data layers
     $.when(
-      $.getJSON('Data/India-States.geojson'),
-      $.getJSON('Data/wildlife-areas.json'),
-      $.getJSON('Data/conservation-areas.json'),
-      $.getJSON('Data/conservation-focus.json'),
+      $.getJSON('data/India-States.geojson'),
+      $.getJSON('data/wildlife-areas.json'),
+      $.getJSON('data/conservation-areas.json'),
+      $.getJSON('data/conservation-focus.json'),
     ).done(function(indiaStates, wildlifeAreas, conservationAreas, conservationFocus) {
       drawMap(indiaStates, wildlifeAreas, conservationAreas, conservationFocus);
     });
@@ -129,7 +120,7 @@ L.tileLayer('http://global.ssl.fastly.net/rastertiles/dark_only_labels/{z}/{x}/{
         style: statesOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = feature.properties.NAME;
+            var tooltip = ("<strong>" + feature.properties.NAME + "</strong>");
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,
@@ -138,12 +129,14 @@ L.tileLayer('http://global.ssl.fastly.net/rastertiles/dark_only_labels/{z}/{x}/{
             // visual affordance on mouseover
             layer.on('mouseover', function(e) {
                 this.setStyle({
-                    weight: 1
+                    weight: 3,
+                    color: "#eaea0e",
+                    fillOpacity: 0.3
                 });
             });
             // use existing option to reset the styles on mouseout
             layer.on('mouseout', function(e) {
-                this.setStyle(conAreasOptions);
+                this.setStyle(statesOptions);
             });
         }
       }).addTo(map);
@@ -152,7 +145,7 @@ L.tileLayer('http://global.ssl.fastly.net/rastertiles/dark_only_labels/{z}/{x}/{
         style: wildlifeOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = feature.properties.NAME;
+            var tooltip = (feature.properties.NAME + "<br>" + feature.properties.DESIG);
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,
@@ -175,7 +168,7 @@ L.tileLayer('http://global.ssl.fastly.net/rastertiles/dark_only_labels/{z}/{x}/{
         style: conAreasOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = feature.properties.tcl_name;
+            var tooltip = ("<strong>" + feature.properties.tcl_name + "</strong>" + "<br>" + "Area ha: " + feature.properties.area_ha);
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,
@@ -198,7 +191,7 @@ L.tileLayer('http://global.ssl.fastly.net/rastertiles/dark_only_labels/{z}/{x}/{
         style: conFocusOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = feature.properties.tcl_name;
+            var tooltip = ("<strong>" + feature.properties.tcl_name + "</strong>" + "<br>" + "Area ha: " + feature.properties.area_ha);
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,
@@ -223,7 +216,8 @@ L.tileLayer('http://global.ssl.fastly.net/rastertiles/dark_only_labels/{z}/{x}/{
     var statesOptions = {
       color: '#404040',
       weight: 0.25,
-      fill: false
+      fill: true,
+      fillOpacity: 0
     }
 
     var conAreasOptions = {

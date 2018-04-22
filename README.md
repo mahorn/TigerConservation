@@ -26,7 +26,7 @@ TigerConservationAreasFocus
 WildlifeProtectedAreas
 * Obtained from [IUCN List of Protected and Conserved Areas](https://www.protectedplanet.net/country/IN) (aka UN Environment).
 * Unnecessary attributes were removed.  
-* Shapefile converted to `JSON`.
+* Shapefile converted to `JSON`.`
 
 # Mock up
 

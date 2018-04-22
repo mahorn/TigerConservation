@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Royal Bengal Tiger Conservation Areas in India</title>
+  <title>India's Royal Bengal Tiger Conservation Areas</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
-
   <style>
-      body, 
-      #map {
+
+    body, 
+    #map {
         position: absolute;
         width: 100%;
         top: 0;
@@ -17,41 +17,36 @@
         margin: 0;
         padding: 0;
         background: rgba(0,0,0,.75);
-    }
+        }
     .tooltip {
         color: black;
         background: #626d71;
-        fill-opacity: 0.1; 
+        fill-opacity: 0.2; 
         border: 0;
         font-size: 1.1em;
-    }
-
-
-          /* CSS rules here */
+        }
+      /* CSS rules here */
   </style>
-
 </head>
-
 <body>
-    
+
     <div id="map"></div>
-    <div id="side-panel"></div>
-    <!-- <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
-            
-  <script>
-    var options = {
-        center: [21.7679, 78.8718],
-        zoom: 5,
-        minZoom: 2,
-        maxZoom: 12,
-        maxBounds: [
-            [21.7779, 78.8618],
-            [21.7579, 78.8718]
-        ]
-    };
+    
+    <script>
+        var options = {
+            center: [21.7679, 78.8718],
+            zoom: 5,
+            minZoom: 2,
+            maxZoom: 12,
+            maxBounds: [
+                [21.7779, 78.8618],
+                [21.7579, 78.8718]
+            ]
+        };
     var map = L.map('map', options);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
@@ -73,102 +68,72 @@
           L.geoJson(indiaStatesData, {
                    style: statesOptions
           }).addTo(map);
-        //   L.geoJson(conservationAreasData, {
-        //       style: conAreasOptions
-        //   }).addTo(map);
           L.geoJson(conservationAreasData, {
               style: conAreasOptions,
               onEachFeature: function(feature, layer) {
                   var tooltip = feature.properties.tcl_name;
-                  layer.bindTooltip(tooltip, {
+                  layer.bindTooltip("Conservation Area: " + tooltip, {
                       sticky: true,
                       className: 'tooltip'
-                  });
-                  layer.on('mouseover', function(e) {
-                      this.setStyle({
+                      });
+                      layer.on('mouseover', function(e) {
+                          this.setStyle({
                           Color: '#F5BE41',
                           fillOpacity: 1
-                      });
-                  });
-                  layer.on('mouseout', function(e) {
-                      this.setStyle({
+                          });
+                        });
+                      layer.on('mouseout', function(e) {
+                          this.setStyle({
                           fillColor: '#f5be41',
                           fillOpacity: 0.3
-                      });
-                  })
-                //   layer.on('mouseout', function(e) {
-                //        this.setStyle(conAreasOptions);
-                //       });
-                }
-          }).addTo(map);
+                          });
+                        });
+                    }
+                }).addTo(map);
           L.geoJson(conservationFocusData, {
               style: conFocusOptions
           }).addTo(map);
-        //   L.geoJson(wildlifeAreasData, {
-        //       style: wildlifeOptions
-        //   });
           L.geoJson(wildlifeAreasData, {
               style: wildlifeOptions,
               onEachFeature: function(feature, layer) {
                   var tooltip = feature.properties.DESIG;
-                  layer.bindTooltip(tooltip,{
+                  layer.bindTooltip("Type: " + tooltip,{
                       sticky: true,
                       className: 'tooltip'
-                  });
-                    layer.on('mouseover', function(e) {
+                      });
+                      
+                  layer.on('mouseover', function(e) {
                       this.setStyle({
                           Color: '#F5BE41',
                           fillOpacity: 1
-                      });
-                  });
+                          });
+                        });
                   layer.on('mouseout', function(e) {
                       this.setStyle({
                           fillColor: '#31A9B8',
                           fillOpacity: 0.3
-                      });
-                  })
-                }
-          }).addTo(map);
-          
-      }
+                           });
+                        });
+                    }
+                }).addTo(map);   
+            }
       
       var statesOptions = {
-        color: '#b9c4c9',
-        //   color: '#c9d1c8',
-        //   color: '#d0d3d4',
-          weight: 1,
-          fillOpacity: 0.2
-      }
-      
-      var conAreasOptions = {
-          color: '#F5BE41',
+          color: '#d0d3d4',
           weight: 1
       }
-      
+      var conAreasOptions = {
+          color: '#d4ac0d',
+          weight: 2
+      }
       var conFocusOptions = {
-          color: '#CF3721',
-          weight: 1,
-          fillOpacity: 0.2
+          color: '#e74c3c',
+          weight: 2
       }
-      
       var wildlifeOptions = {
-          color: '#31A9B8',
-          weight: 1,
-          fillOpacity: 0.2
+          color: '#00ffff',
+          weight: 2
       }
-     
-         
-        // var sanctuaryOptions = 
-
-        // var nationalParkOptions = 
-
-        // var heritageOptions =
-
-        // var otherOptions = 
-
-        
-      
-      
       // JavaScript goes here
   </script>
 </body>

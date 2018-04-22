@@ -19,31 +19,26 @@
       margin: 0;
       padding: 0;
       background: rgba(0, 0, 0, .75);
-            z-index: -1;
-    },
+      z-index: -1;
+    }
     .tooltip {
     color: white;
     background: #295b97;
     border: 0;
     font-size: 1.3em;
-}
+    }
   </style>
-
 </head>
 
-
-
 <body>
-
-
     <div class='absolute top-ml left bottom z1 w-full w360-ml px12 py12-ml'>
       <div class='flex-parent flex-parent--column viewport-third h-auto-ml hmax-full bg-white round-ml shadow-darken10'>
         <div class='px12 py12 scroll-auto'>
           <h2 class='txt-l txt-bold mb6 align-center'>The Rani of the Jungle</h2>
           <img src="img/tiger.jpg">
-          <p>The Royal Bengal Tiger   (<a class='link' href='https://www.iucnredlist.org/details/136899/0'>Panthera tigris tigris</a>) is nearing the end of its reign in Southeast Asia. The species is listed as Endangered on the IUCN Red List and is threatened by poaching, loss and fragmentation of habitat. None of the tiger conservation landscapes within its range is considered large enough to support an effective tiger population of more than 250 adult tigers.</p>
+          <p>The Royal Bengal Tiger (<a class='link' href='https://www.iucnredlist.org/details/136899/0'>Panthera tigris tigris</a>) is nearing the end of its reign in Southeast Asia. The species is listed as Endangered on the IUCN Red List and is threatened by poaching, loss and fragmentation of habitat. None of the tiger conservation landscapes within its range is considered large enough to support an effective tiger population of more than 250 adult tigers.</p>
           <br>
-          <h2 class='txt-m txt-bold mb6'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-layers'/></svg></div>Legend</h2>
+            <h2 class='txt-m txt-bold mb6'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-layers'/></svg></div>Legend</h2>
           <ul>
             <li class='color-green'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-polygon'/></svg></div>Protected Wildlife Areas</li>
             <li class='color-yellow'><div style="display: inline-block; vertical-align: middle"><svg class='icon'><use xlink:href='#icon-polygon'/></svg></div>Tiger Conservation Areas्र</li>
@@ -58,7 +53,7 @@
             </li>
             <br>
             <li>Map authored by:
-              <p> Marissa Defratti & Maria Renee </p>
+              <p> Marissa Defratti & Maria Renee Horn</p>
             </li>
           </ul>
         </footer>
@@ -71,9 +66,7 @@
       <a href="pages/hindi.html"><button class='btn round btn--orange'>Hindi</button></a>
     </div>
 
-
   <div id="map"></div>
-
 
   <!--Load JS Scripts-->
   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
@@ -83,18 +76,17 @@
   <!--Custom JS-->
   <script>
     var options = {
-      center: [21.7679, 78.8718],
-      zoom: 5,
-      minZoom: 2,
-      maxZoom: 12,
-      maxBounds: [
-        [21.7779, 78.8618],
-        [21.7579, 78.8718]
-      ],
-      zoomControl: false
+        center: [21.7679, 78.8718],
+        zoom: 5,
+        minZoom: 2,
+        maxZoom: 12,
+        maxBounds: [
+            [21.7779, 78.8618],
+            [21.7579, 78.8718]
+        ],
+        zoomControl: false
     };
     var map = L.map('map', options);
-
         L.control.zoom({ position: 'topright'}).addTo(map);
     //Basemap
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
@@ -103,7 +95,6 @@
       maxZoom: 19,
       https: true
     }).addTo(map);
-
 
     //Loading data layers
     $.when(
@@ -145,7 +136,7 @@
         style: wildlifeOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = (feature.properties.NAME + "<br>" + feature.properties.DESIG);
+            var tooltip = ("feature.properties.NAME + "<br>" + feature.properties.DESIG");
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,

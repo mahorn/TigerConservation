@@ -106,14 +106,74 @@
       L.geoJson(indiaStatesData, {
         style: statesOptions
       }).addTo(map);
+
       L.geoJson(wildlifeAreasData, {
-        style: wildlifeOptions
+        style: wildlifeOptions,
+        onEachFeature: function(feature, layer) {
+            // shortut to variable
+            var tooltip = feature.properties.NAME;
+            // bind the tooltip to the layer
+            layer.bindTooltip(tooltip, {
+                sticky: true,
+                className: 'tooltip'
+            });
+            // visual affordance on mouseover
+            layer.on('mouseover', function(e) {
+                this.setStyle({
+                    weight: 1
+                });
+            });
+            // use existing option to reset the styles on mouseout
+            layer.on('mouseout', function(e) {
+                this.setStyle(wildlifeOptions);
+            });
+        }
       }).addTo(map);
+
       L.geoJson(conservationAreasData, {
-        style: conAreasOptions
+        style: conAreasOptions,
+        onEachFeature: function(feature, layer) {
+            // shortut to variable
+            var tooltip = feature.properties.tcl_name;
+            // bind the tooltip to the layer
+            layer.bindTooltip(tooltip, {
+                sticky: true,
+                className: 'tooltip'
+            });
+            // visual affordance on mouseover
+            layer.on('mouseover', function(e) {
+                this.setStyle({
+                    weight: 1
+                });
+            });
+            // use existing option to reset the styles on mouseout
+            layer.on('mouseout', function(e) {
+                this.setStyle(conAreasOptions);
+            });
+        }
       }).addTo(map);
+
       L.geoJson(conservationFocusData, {
-        style: conFocusOptions
+        style: conFocusOptions,
+        onEachFeature: function(feature, layer) {
+            // shortut to variable
+            var tooltip = feature.properties.tcl_name;
+            // bind the tooltip to the layer
+            layer.bindTooltip(tooltip, {
+                sticky: true,
+                className: 'tooltip'
+            });
+            // visual affordance on mouseover
+            layer.on('mouseover', function(e) {
+                this.setStyle({
+                    weight: 1
+                });
+            });
+            // use existing option to reset the styles on mouseout
+            layer.on('mouseout', function(e) {
+                this.setStyle(conFocusOptions);
+            });
+        }
       }).addTo(map);
     }
 
@@ -141,8 +201,6 @@
       weight: 0.5,
       fillOpacity: 0.5
     }
-
-  //Tooltips
 
 
   </script>

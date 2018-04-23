@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
   <link href="https://api.mapbox.com/mapbox-assembly/v0.21.2/assembly.min.css" rel="stylesheet">
   <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+  
   <style>
     body,
     #map {
@@ -89,12 +90,19 @@
     var map = L.map('map', options);
         L.control.zoom({ position: 'topright'}).addTo(map);
     //Basemap
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
-      subdomains: 'abcd',
-      maxZoom: 19,
-      https: true
-    }).addTo(map);
+  
+    map.createPane('labels');
+    map.getPane('labels').style.zIndex = -1;
+    map.getPane('labels').style.pointerEvents = 'none';
+
+    
+     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+      //  subdomains: 'abcd',
+      //  maxZoom: 19,
+       pane: 'labels',
+      //  https: true
+     }).addTo(map);
 
     //Loading data layers
     $.when(
@@ -136,7 +144,7 @@
         style: wildlifeOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = ("feature.properties.NAME + "<br>" + feature.properties.DESIG");
+            var tooltip = ("Wildlife Area: " + feature.properties.NAME + "<br>" + "Type: " + feature.properties.DESIG);
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,
@@ -159,7 +167,7 @@
         style: conAreasOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = ("<strong>" + feature.properties.tcl_name + "</strong>" + "<br>" + "Area ha: " + feature.properties.area_ha);
+            var tooltip = ("<strong>" + "Conservation Area: " + feature.properties.tcl_name + "</strong>" + "<br>" + "Area ha: " + feature.properties.area_ha);
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,
@@ -182,7 +190,7 @@
         style: conFocusOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = ("<strong>" + feature.properties.tcl_name + "</strong>" + "<br>" + "Area ha: " + feature.properties.area_ha);
+            var tooltip = ("<strong>" + "Focus Conservation Area: " + feature.properties.tcl_name + "</strong>" + "<br>" + "Area ha: " + feature.properties.area_ha);
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,

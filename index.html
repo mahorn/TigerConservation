@@ -1,6 +1,7 @@
 <!doctype html>
 
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
   <meta charset="utf-8">
@@ -279,4 +280,267 @@
   </script>
 </body>
 
+=======
+<head>
+  <meta charset="utf-8">
+
+  <title>Indian Tiger Conservation</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+    <link href="https://api.mapbox.com/mapbox-assembly/v0.21.2/assembly.min.css" rel="stylesheet"> 
+    <link href='https://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
+ <style>
+
+    body,
+    #map {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        background: rgba(0,0,0,0.75);
+        z-index: -1; 
+        }
+    .tooltip {
+        color: #d4d4d4;
+        background: black;
+        fill-opacity: 0; 
+        border: 0;
+        font-size: 1.3em;
+        font-family: 'Handlee', cursive;
+        }
+    header {
+        padding: 6px 10%;
+        font-size: 1em;
+        color: #00ffff;
+        font-family: 'Handlee', cursive;
+        }
+    h1 {
+        position: absolute; 
+        z-index: 100;
+        top: 30px;
+        left: 50px;
+        padding: 8px 15px;
+        margin: 0;
+        color: #d4ac0d;
+        font-size: 1.5em;
+        background: rgba(25,25,25,0.8);
+        border-radius: 5px;
+    }
+    p {  
+        z-index: 100;
+        top: 50px;
+        left: 20px;
+        padding: 8px 15px;
+        font-size: 1em;
+        color: #d0d3d4;
+        font-family: 'Handlee', cursive;
+        overflow-y: scroll; 
+    }
+    div.ex1 {
+        background-color: rgba(25,25,25,0.8);
+        width: 230px;
+        height: 420px;
+        overflow: scroll;
+        position: absolute;
+        left: 50px;
+        top: 85px;
+        text-align: left;
+    }
+    p.ex {
+        color: rbg(0,0,255);
+    }
+    p.ex1 {
+        color: #d0d3d4;
+        font-size: 1.2em;
+    }
+    p.ex2 {
+        color: #d0d3d4;
+        font-size: 0.8em;
+    }
+    p.ex3 {
+        color: #00ffff;
+        font-size: 1em;
+    }
+    p.ex4 {
+        color: #d4ac0d;
+        font-size: 1em;
+    }
+    p.ex5 {
+        color: #e74c3c;
+        font-size: 1em;
+    }
+    .footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 350px;
+        height: 60px;
+        background-color: rgba(25,25,25,0.8);
+        color: #d0d3d4;
+        text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+
+    <header><h1>The Rani of the Jungle</h1></header>
+           
+    <div class="ex1"><p class="ex">The Royal Bengal Tiger (<i>Panthera tigris tigris</i>) is nearing the end of its reign in SoutheastAsia.
+        The species is listed as Endangered on the IUCN Red list and is threatened by poaching, loss and fragmentation of habitat.
+        None of the tiger conservation landscapes within its range is considered large enough to support an effective tiger population of more than 250 adult tigers.
+            <p class="ex1"><svg class='icon'><use xlink:href='#icon-layers'/></svg>Legend</p>
+            <p class="ex3"><svg class='icon'><use xlink:href='#icon-polygon'/></svg>Protected Wildlife Areas</p>
+            <p class="ex4"><svg class='icon'><use xlink:href='#icon-polygon'/></svg>Tiger Conservation Areas</p>
+            <p class="ex5"><svg class='icon'><use xlink:href='#icon-polygon'/></svg>Tiger Conservation High Priority</p></div>
+            
+    <div class="footer"><p class="ex2">Data Sources: <a class='link' href='https://www.protectedplanet.net/country/IN'>Protected Planet</a>,   <a class='link' href='http://data.globalforestwatch.org/datasets'>Global Forest Watch</a><br>Map Authored by: Marissa Defratti & Maria Renee Horn</p></div>
+        
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script async defer src="https://api.mapbox.com/mapbox-assembly/v0.21.2/assembly.js"></script>
+   
+    <script>
+
+        var options = {
+            center: [21.6679, 80.8718],
+            zoom: 5,
+            minZoom: 2,
+            maxZoom: 12,
+            maxBounds: [
+                [20.6779, 72.8618],
+                [21.7579, 79.8718]
+            ]
+        };
+    var map = L.map('map', options);
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+    }).addTo(map);
+      
+    $.when(
+        $.getJSON('data/india-states.json'),
+        $.getJSON('data/conservation-areas.json'),
+        $.getJSON('data/conservation-focus.json'),
+        $.getJSON('data/wildlife-areas.json')
+    ).done(function (indiaStates, conservationAreas, conservationFocus, wildlifeAreas) {
+        drawMap(indiaStates, conservationAreas, conservationFocus, wildlifeAreas);
+      });
+      
+      function drawMap(indiaStatesData, conservationAreasData, conservationFocusData, wildlifeAreasData) {
+          
+          L.geoJson(indiaStatesData, {
+              style: statesOptions,           
+                onEachFeature: function(feature, layer) {        
+                   var tooltip = (feature.properties.NAME_1);
+                      layer.bindTooltip(tooltip, {
+                        sticky: true,
+                        className: 'tooltip'
+                      });
+                      layer.on('mouseover', function(e){
+                        this.setStyle({
+                          weight: 1,
+                          color: '#d0d3d4',
+                          fillOpacity: 0.7
+                        });
+                      });
+                      layer.on('mouseout', function(e){
+                        this.setStyle(statesOptions);
+                        });
+                      }
+                   }).addTo(map);
+          L.geoJson(conservationAreasData, {
+              style: conAreasOptions,
+              onEachFeature: function(feature, layer) {
+                  var tooltip = ("Tiger Conservation Area: " + feature.properties.tcl_name + "<br>" + "Total Area ha: " + feature.properties.area_ha);
+                  layer.bindTooltip(tooltip, {
+                      sticky: true,
+                      className: 'tooltip'
+                      });
+                  layer.on('mouseover', function(e) {
+                      this.setStyle({
+                        weight: 0.5,
+                        color: '#F5BE41',
+                        fillOpacity: 1
+                        });
+                      });
+                  layer.on('mouseout', function(e) {
+                      this.setStyle(conAreasOptions);
+                      });
+                    }
+                }).addTo(map);
+          L.geoJson(conservationFocusData, {
+              style: conFocusOptions,              
+              onEachFeature: function(feature, layer) {
+                  var tooltip = ("Tiger High Priority Conservation Area: " + feature.properties.tcl_name + "<br>" + "Total Area ha: " + feature.properties.area_ha);
+                    layer.bindTooltip(tooltip, {
+                      sticky: true,
+                      className: 'tooltip'
+                      });
+                    layer.on('mouseover', function(e) {
+                        this.setStyle({
+                           weight: 0.5,
+                           color: '#e74c3c',
+                           fillOpacity: 1
+                          });
+                        });
+                    layer.on('mouseout', function(e) {
+                        this.setStyle(conFocusOptions);
+                      });
+                    }
+                }).addTo(map);
+          L.geoJson(wildlifeAreasData, {
+              style: wildlifeOptions,
+              onEachFeature: function(feature, layer) {
+                  var tooltip = ("Protected Wildlife Area: " + feature.properties.NAME + "<br>" + "Designation Type: " + feature.properties.DESIG + "<br>" + "Designation Year: " + feature.properties.STATUS_YR);
+                    layer.bindTooltip(tooltip, {
+                      sticky: true,
+                      className: 'tooltip'
+                      });
+                  layer.on('mouseover', function(e) {
+                      this.setStyle({
+                          Color: '#F5BE41',
+                          fillOpacity: 1
+                          });
+                        });
+                  layer.on('mouseout', function(e) {
+                      this.setStyle({
+                          fillColor: '#31A9B8',
+                          fillOpacity: 0.3
+                           });
+                        });
+                    }
+                }).addTo(map);   
+            }
+      
+      var statesOptions = {
+          color: '#d0d3d4',
+          weight: 1,
+          fill: true,
+          fillOpacity: 0.2
+      }
+      var conAreasOptions = {
+          color: '#d4ac0d',
+          weight: 0.8,
+          fillOpacity: 0.7
+      }
+      var conFocusOptions = {
+          color: '#e74c3c',
+          weight: 1,
+          fillOpacity: 0.4
+      }
+      var wildlifeOptions = {
+          color: '#00ffff',
+          weight: 2
+      }
+     
+  </script>
+</body>
+>>>>>>> 51eb94a6ead7a5b8802d2c1978d97c569ba57076
 </html>

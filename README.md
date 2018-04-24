@@ -8,20 +8,37 @@ This web map will give a brief overview of conservation areas for the Royal Beng
 StateBorder
 * Obtained from [Diva GIS](http://www.diva-gis.org/gdata)
 * Unnecessary attributes were removed.
+<<<<<<< HEAD
+=======
+* Added projection using `ogr2ogr`.
+* Shapefile converted to `JSON`.
+>>>>>>> 51eb94a6ead7a5b8802d2c1978d97c569ba57076
 
 TigerConservationAreas
 * Obtained from [Global Forest Watch](http://data.globalforestwatch.org/datasets/04d892c083f54c638228931da081467b_3)
 * Unnecessary attributes were removed. Data was cleaned to exclude any polygons not in India. Any overlapping areas with TigerConservationFocus were removed.
 * Contains conservation areas for the Royal Bengal Tiger.
+<<<<<<< HEAD
+=======
+* Shapefile converted to `JSON`.
+>>>>>>> 51eb94a6ead7a5b8802d2c1978d97c569ba57076
 
 TigerConservationAreasFocus
 * Obtained from [Global Forest Watch](http://data.globalforestwatch.org/datasets/f50efdadb0234ef392c4ecd8185c1f5f_4)
 * Unnecessary attributes were removed. Data was cleaned to exclude any polygons not in India.
 * The polygons in this layer are also conservation areas, but have been designated as a high priority focus for conservation efforts.
+<<<<<<< HEAD
+=======
+* Shapefile converted to `JSON`.
+>>>>>>> 51eb94a6ead7a5b8802d2c1978d97c569ba57076
 
 WildlifeProtectedAreas
 * Obtained from [IUCN List of Protected and Conserved Areas](https://www.protectedplanet.net/country/IN) (aka UN Environment).
 * Unnecessary attributes were removed.  
+<<<<<<< HEAD
+=======
+* Shapefile converted to `JSON`.`
+>>>>>>> 51eb94a6ead7a5b8802d2c1978d97c569ba57076
 
 # Mock up
 

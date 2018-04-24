@@ -83,7 +83,7 @@
         maxZoom: 12,
         maxBounds: [
             [21.7779, 78.8618],
-            [21.7579, 78.8718]
+            [21.7579, 68.8718]
         ],
         zoomControl: false
     };
@@ -144,7 +144,7 @@
         style: wildlifeOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = ("Wildlife Area: " + feature.properties.NAME + "<br>" + "Type: " + feature.properties.DESIG);
+            var tooltip = ("Protected Wildlife Area: " + feature.properties.NAME + "<br>" + "Designation Type: " + feature.properties.DESIG + "<br>" + "Designation Year: " + feature.properties.STATUS_YR);
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,
@@ -167,7 +167,7 @@
         style: conAreasOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = ("<strong>" + "Conservation Area: " + feature.properties.tcl_name + "</strong>" + "<br>" + "Area ha: " + feature.properties.area_ha);
+            var tooltip = ("<strong>" + "Tiger Conservation Area: " + feature.properties.tcl_name + "</strong>" + "<br>" + "Total Area ha: " + feature.properties.area_ha);
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,
@@ -190,7 +190,7 @@
         style: conFocusOptions,
         onEachFeature: function(feature, layer) {
             // shortut to variable
-            var tooltip = ("<strong>" + "Focus Conservation Area: " + feature.properties.tcl_name + "</strong>" + "<br>" + "Area ha: " + feature.properties.area_ha);
+            var tooltip = ("<strong>" + "Tiger High Priority Conservation Area: " + feature.properties.tcl_name + "</strong>" + "<br>" + "Total Area ha: " + feature.properties.area_ha);
             // bind the tooltip to the layer
             layer.bindTooltip(tooltip, {
                 sticky: true,
@@ -209,8 +209,6 @@
         }
       }).addTo(map);
     }
-
-
     // Layer styles
     var statesOptions = {
       color: '#404040',
@@ -236,8 +234,6 @@
       weight: 0.5,
       fillOpacity: 0.5
     }
-
-
   </script>
 </body>
 

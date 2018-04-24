@@ -143,18 +143,17 @@
     }).addTo(map);
 
     //Basemap
-    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/light_all/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
-      subdomains: 'abcd',
-      maxZoom: 19,
-      https: true
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
     }).addTo(map);
 
 
     //Basemap Labels
-    map.createPane('labels');
-    map.getPane('labels').style.zIndex = 650;
-    map.getPane('labels').style.pointerEvents = 'none';
+    // map.createPane('labels');
+    // map.getPane('labels').style.zIndex = 650;
+    // map.getPane('labels').style.pointerEvents = 'none';
 
    // L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/light_only_labels/{z}/{x}/{y}.png', {
      // attribution: '©OpenStreetMap, ©CartoDB',

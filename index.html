@@ -26,7 +26,8 @@
         background: black;
         fill-opacity: 0; 
         border: 0;
-        font-size: 1.1em;
+        font-size: 1.3em;
+        font-family: 'Handlee', cursive;
         }
     header {
         padding: 6px 10%;
@@ -177,7 +178,7 @@
           L.geoJson(conservationAreasData, {
               style: conAreasOptions,
               onEachFeature: function(feature, layer) {
-                  var tooltip = ("Conservation Area: " + feature.properties.tcl_name + "<br>" + "Total Area ha: " + feature.properties.area_ha);
+                  var tooltip = ("Tiger Conservation Area: " + feature.properties.tcl_name + "<br>" + "Total Area ha: " + feature.properties.area_ha);
                   layer.bindTooltip(tooltip, {
                       sticky: true,
                       className: 'tooltip'
@@ -197,7 +198,7 @@
           L.geoJson(conservationFocusData, {
               style: conFocusOptions,              
               onEachFeature: function(feature, layer) {
-                  var tooltip = ("Focus Conservation Area: " + feature.properties.tcl_name + "<br>" + "Total Area ha: " + feature.properties.area_ha);
+                  var tooltip = ("Tiger High Priority Conservation Area: " + feature.properties.tcl_name + "<br>" + "Total Area ha: " + feature.properties.area_ha);
                     layer.bindTooltip(tooltip, {
                       sticky: true,
                       className: 'tooltip'
@@ -217,7 +218,7 @@
           L.geoJson(wildlifeAreasData, {
               style: wildlifeOptions,
               onEachFeature: function(feature, layer) {
-                  var tooltip = ("Wildlife Area: " + feature.properties.NAME + "<br>" + "Designation Type: " + feature.properties.DESIG + "<br>" + "Designation Year: " + feature.properties.STATUS_YR);
+                  var tooltip = ("Protected Wildlife Area: " + feature.properties.NAME + "<br>" + "Designation Type: " + feature.properties.DESIG + "<br>" + "Designation Year: " + feature.properties.STATUS_YR);
                     layer.bindTooltip(tooltip, {
                       sticky: true,
                       className: 'tooltip'
